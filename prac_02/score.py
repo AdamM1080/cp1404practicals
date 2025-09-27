@@ -1,13 +1,14 @@
 """
-CP1404/CP5632 - Practical
+CP1404/CP5632 - Practical02
 Program to determine score status of a user, generate a random score and print the results of both.
 """
+
 from random import randint
 
 
 def main():
     """Determine score status, random score and print results"""
-    score = float(input("Enter score: "))
+    score = int(input("Enter score: "))
     result = determine_result(score)
     print(result)
     random_score = randint(0, 100)
