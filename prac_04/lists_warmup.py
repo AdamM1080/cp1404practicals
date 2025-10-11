@@ -1,6 +1,6 @@
 """
 CP1404/CP5632 Practical04
-Various list exercises.
+Various list warmups.
 """
 
 numbers = [3, 1, 4, 1, 5, 9, 2]
