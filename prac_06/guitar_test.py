@@ -4,7 +4,7 @@ Estimated time: 45 minutes
 Actual time: 15 minutes
 """
 
-from prac_06.guitars import Guitar
+from prac_06.guitar import Guitar
 
 
 def main():

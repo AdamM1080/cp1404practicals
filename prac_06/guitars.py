@@ -1,23 +1,30 @@
 """
-CP1404/CP5632 Practical - Guitar class
-Estimated time: 30 minutes
-Actual time: 15 minutes
+CP1404 Practical - Playing with guitar.py
+Estimated time: 60 minutes
+Actual time: It's late...
 """
 
-class Guitar:
-    def __init__(self, name="", year=0, cost=0):
-        self.name = name
-        self.year = year
-        self.cost = cost
+from prac_06.guitar import Guitar
 
-    def __str__(self):
-        return f"{self.name} ({self.year}) : ${self.cost:.2f}"
 
-    def get_age(self):
-        return 2022 - self.year
+def main():
+    """My Guitars! - Display guitars entered by user"""
+    guitars = []
+    print("My Guitars!")
+    name = input("Name: ")
+    while name != "":
+        year = int(input("Year: "))
+        cost = float(input("Cost: "))
+        guitar = Guitar(name, year, cost)
+        guitars.append(guitar)
+        print(f"{guitar} added")
+        name = input("Name: ")
+    print("These are my guitars:")
+    for i, guitar in enumerate(guitars, 1):
+        vintage_string = " (vintage)" if guitar.is_vintage() else ""
+        maximum_name_length = max(len(guitar.name) for guitar in guitars)
+        print(f"Guitar {i}: {guitar.name:>{maximum_name_length}} ({guitar.year}), worth ${guitar.cost:10,.2f}{vintage_string}")
 
-    def is_vintage(self):
-        if self.get_age() > 50:
-            return True
-        else:
-            return False
+
+if __name__ == '__main__':
+    main()
