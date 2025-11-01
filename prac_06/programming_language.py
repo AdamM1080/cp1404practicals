@@ -11,11 +11,9 @@ class ProgrammingLanguage:
         self.reflection = reflection
         self.year = year
 
-
     def __str__(self):
         """Return a string representation of the car."""
         return f"{self.name}, {self.typing} Typing, Reflection={self.reflection}, First appeared in {self.year}"
-
 
     def is_dynamic(self):
         if self.typing == "Dynamic":

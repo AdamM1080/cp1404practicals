@@ -17,5 +17,6 @@ def main():
         if language.is_dynamic():
             print(language.name)
 
+
 if __name__ == '__main__':
     main()

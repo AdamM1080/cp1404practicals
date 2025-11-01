@@ -1,3 +1,9 @@
+"""
+CP1404/CP5632 Practical - Guitar class
+Estimated time: 30 minutes
+Actual time: 15 minutes
+"""
+
 class Guitar:
     def __init__(self, name="", year=0, cost=0):
         self.name = name
@@ -5,14 +11,10 @@ class Guitar:
         self.cost = cost
 
     def __str__(self):
-        name = "Gibson L-5 CES"
-        year = 1922
-        cost = 16035.40
-        print(f"My guitar: {name}, first made in {year}")
-        return f"{self.name} ({self.year}) : ${self.cost}"
+        return f"{self.name} ({self.year}) : ${self.cost:.2f}"
 
     def get_age(self):
-        return 2025 - self.year
+        return 2022 - self.year
 
     def is_vintage(self):
         if self.get_age() > 50:
