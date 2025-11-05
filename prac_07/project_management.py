@@ -4,8 +4,8 @@ Estimated time: 30 minutes
 Actual time: Long one
 """
 
-# from datetime import date
-from prac_07.project import Project
+import datetime
+from project import Project
 
 DEFAULT_FILENAME = "projects.txt"
 MENU = """- (L)oad projects
@@ -31,7 +31,7 @@ def main():
         elif choice == "S":
             pass
         elif choice == "D":
-            pass
+            display_projects(projects)
         elif choice == "F":
             pass
         elif choice == "A":
@@ -46,7 +46,7 @@ def main():
     # save_confirmation = input("Would you like to save to projects.txt? ")
     # if save_confirmation == "Y":
     #     save_projects(selected_filename)
-    # print("Thank you for using custom-built project management software.")
+    print("Thank you for using custom-built project management software.")
 
 
 
@@ -58,20 +58,32 @@ def load_projects(current_filename):
         in_file.readline()
         for line in in_file:
             project_part = line.split("\t")
-            name, start_date, cost_estimate, completion_percentage = project_part[0], project_part[1], project_part[2], project_part[3]
-            projects.append(Project(name, start_date, cost_estimate, completion_percentage))
+            name, start_date, priority, cost_estimate, completion_percentage = project_part[0], project_part[1], project_part[2], project_part[3], project_part[4]
+            convert_date_string(start_date)
+            projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
             number_of_projects_loaded += 1
         print(f"Loaded {len(projects)} from {current_filename}")
     in_file.close()
-    return projects, number_of_projects_loaded
+    return projects
+
+
+def convert_date_string(start_date):
+    """Convert date string to a datetime object"""
+    return datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
+
 
 
 # def save_projects(selected_filename):
 #     """Save projects to file"""
 
 
-# def display_projects():
-#
+def display_projects(projects):
+    """Display projects entered by user"""
+    for project in projects:
+        print(f"{project.name}, start: {project.start_date}, priority {project.priority}, estimate: ${float(project.cost_estimate):.2f}, completion: {int(project.completion_percentage)}%")
+
+
+
 # def filter_projects_by_date():
 #
 # def add_new_project():
