@@ -50,8 +50,7 @@ def display_guitars(guitars):
     max_name_length = max(len(g.name) for g in guitars)
     for i, guitar in enumerate(guitars, 1):
         vintage_status = " (vintage)" if guitar.is_vintage() else ""
-        print(
-            f"Guitar {i}: {guitar.name:{max_name_length}} ({guitar.year}), worth ${guitar.cost:10,.2f}{vintage_status}")
+        print(f"Guitar {i}: {guitar.name:{max_name_length}} ({guitar.year}), worth ${guitar.cost:10,.2f}{vintage_status}")
 
 
 def save_guitars(filename, guitars):
