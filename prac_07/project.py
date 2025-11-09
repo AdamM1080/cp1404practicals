@@ -6,6 +6,7 @@ Actual time: An hour or two
 
 class Project:
     def __init__(self, name, start_date, priority, cost_estimate, completion_percentage):
+        """Initialize a project"""
         self.name = name
         self.start_date = start_date
         self.priority = priority
@@ -13,6 +14,9 @@ class Project:
         self.completion_percentage = completion_percentage
 
     def __repr__(self):
-        """"""
+        """return string representation of a project"""
         return f"{self.name} {self.start_date} {self.priority} {self.cost_estimate} {self.completion_percentage}"
 
+    def __lt__(self, other):
+        """Compare two projects based on priority"""
+        return int(self.priority) < int(other.priority)

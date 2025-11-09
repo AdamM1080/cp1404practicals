@@ -33,8 +33,7 @@ def main():
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            # filter_projects_by_date(projects)
-            pass
+            filter_projects_by_date(projects)
         elif choice == "A":
             add_new_project(projects)
         elif choice == "U":
@@ -42,14 +41,12 @@ def main():
             pass
         else:
             print("Invalid choice")
-            choice = input(">>> ").upper()
         print(MENU)
         choice = input(">>> ").upper()
     save_confirmation = input("Would you like to save to projects.txt? ")
     if save_confirmation == "Y":
         save_projects(selected_filename, projects)
     print("Thank you for using custom-built project management software.")
-
 
 
 def load_projects(selected_filename):
@@ -60,7 +57,8 @@ def load_projects(selected_filename):
         in_file.readline()
         for line in in_file:
             project_part = line.split("\t")
-            name, start_date, priority, cost_estimate, completion_percentage = project_part[0], project_part[1], int(project_part[2]), float(project_part[3]), int(project_part[4])
+            name, start_date, priority, cost_estimate, completion_percentage = project_part[0], project_part[1], int(
+                project_part[2]), float(project_part[3]), int(project_part[4])
             convert_date_string(start_date)
             projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
             number_of_projects_loaded += 1
@@ -74,38 +72,41 @@ def convert_date_string(start_date):
     return datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
 
 
-
 def save_projects(selected_filename, projects):
     """Save projects to file"""
     with open(selected_filename, "w", encoding="utf-8") as out_file:
+        out_file.readline()
         for name, start_date, priority, cost_estimate, completion_percentage in projects:
             print(f"{name}{start_date}{priority}{cost_estimate}{completion_percentage}", sep="\t", file=out_file)
     out_file.close()
-
-
 
 
 def display_projects(projects):
     """Display projects entered by user"""
     incomplete_status = [project for project in projects if project.completion_percentage < 100]
     complete_status = [project for project in projects if project.completion_percentage == 100]
-    incomplete_status.sort(key=projects[2])
-    complete_status.sort(key=projects[2])
+    incomplete_status.sort()
+    complete_status.sort()
     print("Incomplete projects:")
     for project in incomplete_status:
-        print(" ")
+        print(f"{project.name}, start: {project.start_date}, priority: {project.priority}, estimate: ${project.cost_estimate:.2f}, completion: {project.completion_percentage}%")
     print("Completed projects:")
     for project in complete_status:
-        print(" ")
+        print(f"{project.name}, start: {project.start_date}, priority: {project.priority}, estimate: ${project.cost_estimate:.2f}, completion: {project.completion_percentage}%")
 
 
-
-# def filter_projects_by_date():
-
-
+def filter_projects_by_date(projects):
+    """Filter projects by date"""
+    date_string = input("Show projects that start after date (dd/mm/yyyy): ").strip()
+    filter_date = convert_date_string(date_string)
+    filtered_projects = [project for project in projects if convert_date_string(project.start_date) >= filter_date]
+    filtered_projects.sort()
+    for project in filtered_projects:
+        print(f"{project.name}, start: {project.start_date}, priority: {project.priority}, estimate: ${project.cost_estimate:.2f}, completion: {project.completion_percentage}%")
 
 
 def add_new_project(projects):
+    """Add a new project"""
     print("let's add a new project")
     name = input("Name: ").strip()
     start_date = input("Start date: ").strip()
@@ -117,8 +118,8 @@ def add_new_project(projects):
     projects.append(new_project)
     return new_project
 
-# def update_project():
 
+# def update_project():
 
 
 if __name__ == '__main__':
