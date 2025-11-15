@@ -20,18 +20,23 @@ class ConvertMilesToKilometresApp(App):
 
     def handle_calculation(self, value):
         """ Handle calculation of miles to kilometres, output result to label widget """
-        try:
-            miles = float(value)
-            result = miles * MILES_TO_KILOMETRES
-            self.root.ids.output_label.text = str(result)
-        except ValueError:
-            self.root.ids.output_label.text = 'Invalid input'
+        miles = self.get_valid_miles()
+        result = miles * MILES_TO_KILOMETRES
+        self.root.ids.output_label.text = str(result)
 
     def handle_increment(self, increment):
         """Handle incrementation via up/ down buttons"""
-        value = float(self.root.ids.input_miles.text) + increment
+        value = self.get_valid_miles() + increment
         self.root.ids.input_miles.text = str(value)
         self.handle_calculation(value)
+
+    def get_valid_miles(self):
+        """Get valid input of miles before conversion to kilometres"""
+        try:
+            value = float(self.root.ids.input_miles.text)
+            return value
+        except ValueError:
+            return 0.0
 
 
 
