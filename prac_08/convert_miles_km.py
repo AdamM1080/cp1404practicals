@@ -1,0 +1,39 @@
+"""
+CP1404/CP5632 Practical
+Kivy GUI program to convert miles to kilometres
+Adam Maclean, IT@JCU
+Started 15/11/2025
+"""
+
+from kivy.app import App
+from kivy.lang import Builder
+
+MILES_TO_KILOMETRES = 1.60934
+
+class ConvertMilesToKilometresApp(App):
+    """ ConvertMilesToKilometresApp converts miles to kilometres """
+    def build(self):
+        """ Build the Kivy app from the kv file """
+        self.title = "Convert Miles to Kilometres"
+        self.root = Builder.load_file('convert_miles_km.kv')
+        return self.root
+
+    def handle_calculation(self, value):
+        """ Handle calculation of miles to kilometres, output result to label widget """
+        try:
+            miles = float(value)
+            result = miles * MILES_TO_KILOMETRES
+            self.root.ids.output_label.text = str(result)
+        except ValueError:
+            self.root.ids.output_label.text = 'Invalid input'
+
+    def handle_increment(self, increment):
+        """Handle incrementation via up/ down buttons"""
+        value = float(self.root.ids.input_miles.text) + increment
+        self.root.ids.input_miles.text = str(value)
+        self.handle_calculation(value)
+
+
+
+if __name__ == "__main__":
+    ConvertMilesToKilometresApp().run()
