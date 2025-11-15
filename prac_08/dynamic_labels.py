@@ -2,6 +2,8 @@
 CP1404/CP5632, Practical
 Dynamically create buttons based on content of list
 Adam Maclean
+Estimated time: 30 minutes
+Actual time: 30 minutes
 """
 
 from kivy.app import App

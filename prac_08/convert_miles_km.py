@@ -2,7 +2,8 @@
 CP1404/CP5632 Practical
 Kivy GUI program to convert miles to kilometres
 Adam Maclean, IT@JCU
-Started 15/11/2025
+Estimated time: 30 minutes
+Actual time: 30 minutes
 """
 
 from kivy.app import App
@@ -40,5 +41,4 @@ class ConvertMilesToKilometresApp(App):
 
 
 
-if __name__ == "__main__":
-    ConvertMilesToKilometresApp().run()
+ConvertMilesToKilometresApp().run()
