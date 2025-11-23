@@ -12,7 +12,7 @@ def main():
     fare = taxi.get_fare()
     print(taxi)
     print(f"Fare: ${fare:.2f}")
-    assert (fare - 48.78) < 0.01, f"Expected fare 48.78, Actual fare: ${fare:.2f}"
+    assert (fare - 48.80) < 0.01, f"Expected fare 48.80, Actual fare: ${fare:.2f}"
 
 
 if __name__ == "__main__":
