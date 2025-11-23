@@ -1,10 +1,9 @@
-
 """
 CP1404/CP5632 Practical
 taxi test object
 """
 
-from taxi import Taxi
+from prac_09.taxi import Taxi
 
 
 def main():
